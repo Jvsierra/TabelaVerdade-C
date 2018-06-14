@@ -1,2 +1,14 @@
 # TabelaVerdade-C
-Programa que dá a tabela-verdade de uma expressão booleana
+Programa que dá a tabela-verdade de uma expressão booleana, escrito em C:
+
+Obs: o programa ainda não conta com o módulo que verifica se um expressão é válida ou não. Se uma expressão inválida for digitada, o programa provavelmente se comportará de forma inesperada.
+
+Os caracteres usados para representar os operadores booleanos são (além dos parênteses):
+'.' : conjunção;
+'+' : disjunção inclusiva;
+'>' : condicional;
+'=' : bicondicional;
+'#' : disjunção exclusiva.
+
+Exemplos de expressões convertidas à sintaxe do programa:
+
