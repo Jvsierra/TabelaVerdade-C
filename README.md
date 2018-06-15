@@ -28,4 +28,5 @@ p+!r>q.!r
  
  # COMO USAR
  1 - Compile o arquivo "main.c" em um compilador C qualquer
+ 
  2 - Digite uma expressão válida
