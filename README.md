@@ -20,8 +20,8 @@ Exemplos de expressões convertidas à sintaxe do programa (retirados do livro L
 
 ![Exemplo 1](https://i.imgur.com/OQCdBYy.png)
 
-=p+!r>q.!r
+p+!r>q.!r
 
 ![Exemplo 2](https://i.imgur.com/5gXnmPI.png)
 
-=!(p.q)+!(q=p)
+!(p.q)+!(q=p)
