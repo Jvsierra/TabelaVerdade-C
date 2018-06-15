@@ -14,7 +14,7 @@ void expressaoMinusculo();
 void somaUmBinario();
 void remanejaExpressao(int inicio);
 void remanejaExpressaoNegacao(int inicio);
-void resolveExpressao(int inicio, int fim);
+void resolveExpressao(int inicio, int fim, int parenteses);
 
 int main()
 {
@@ -84,7 +84,7 @@ int main()
 			
 		}
 			
-		resolveExpressao(0, (strlen(expressaoAux) - 1));
+		resolveExpressao(0, (strlen(expressaoAux) - 2), 0);
 			
 		for(j = 0; j < tlLetras; j++)
 			printf("%c ", valoresLetras[j]);
@@ -165,19 +165,28 @@ void remanejaExpressao(int inicio)
 {
 	int i;
 	
-	for(i = inicio; i < strlen(expressaoAux) - 1; i++)
+	for(i = inicio; expressaoAux[i + 2] > (int)'\0'; i++){
 		expressaoAux[i] = expressaoAux[i + 2];
+	}
+	
+	
+	expressaoAux[i] = expressaoAux[i + 2];
 }
 
 void remanejaExpressaoNegacao(int inicio)
 {
 	int i;
 	
-	for(i = inicio; i < strlen(expressaoAux); i++)
+	for(i = inicio; expressaoAux[i + 1] > (int)'\0'; i++)
+	{
 		expressaoAux[i] = expressaoAux[i + 1];
+	}
+	
+	expressaoAux[i] = '\0';
+	
 }
 
-void resolveExpressao(int inicio, int fim)
+void resolveExpressao(int inicio, int fim, int parenteses)
 {
 	int pos, pos2, i;
 	
@@ -189,7 +198,9 @@ void resolveExpressao(int inicio, int fim)
 			pos = inicio;
 			
 			while(pos <= fim && expressaoAux[pos] != '(')
+			{
 				pos++;
+			}
 				
 			if(pos <= fim)
 			{
@@ -198,13 +209,9 @@ void resolveExpressao(int inicio, int fim)
 				while(pos2 <= fim && expressaoAux[pos2] != ')')
 					pos2++;
 					
-				if(pos2 <= fim)
+				if(pos2 <= fim && (pos2 - pos > 2))
 				{
-					resolveExpressao(pos + 1, pos2 - 1);
-				}
-				else
-				{
-					pos = fim + 1;
+					resolveExpressao(pos + 1, pos2 - 1, 1);
 				}
 			}
 		}while(pos <= fim);
@@ -309,6 +316,8 @@ void resolveExpressao(int inicio, int fim)
 					expressaoAux[pos - 1] = '0';
 					
 				remanejaExpressao(pos);	
+				
+				puts(expressaoAux);
 			}		
 		}while(pos <= fim);
 		
@@ -331,9 +340,21 @@ void resolveExpressao(int inicio, int fim)
 				remanejaExpressao(pos);	
 			}		
 		}while(pos <= fim);
-		
-		for(i = 0; expressaoAux[i] != '\0'; i++)
-			if(expressaoAux[i] == '(' || expressaoAux[i] == ')')
-				remanejaExpressaoNegacao(i);
+				
+		if(parenteses == 1)
+		{
+			for(i = inicio - 1; i <= fim + 1; i++)
+				if(expressaoAux[i] == '(' && expressaoAux[i + 2] == ')' || expressaoAux[i] == ')')
+				{
+					remanejaExpressaoNegacao(i);
+				}
+					
+			inicio = 0;
+			parenteses = 0;
+		}
+		inicio = 0;
+		parenteses = 0;
+		fim = strlen(expressaoAux) - 1;
 	}
+	
 }
