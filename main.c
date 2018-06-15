@@ -4,24 +4,44 @@
 #include <string.h>
 #include <math.h>
 
+//Limite
 #define LIM 5001
 
+/*
+expressao[]->string que conterá a expressão digitada pelo usuário
+expressaoAux[]->String auxiliar em que ficará copiada a expressão digitada
+letras[]->String em que ficarão as variáveis digitadas pelo usuário na expressão
+valoresLetras[]->String em que ficarão os valores lógicos das variáveis em cada momento da resolução
+*/
 char expressao[LIM], expressaoAux[LIM], letras[(LIM - 1) / 2], valoresLetras[(LIM - 1) / 2];
+
+/*
+tlLetras = número de variáveis da expressão atual
+carryOut = variável usada pela função somaUmBinario() para alterar os valores lógicos das variáveis
+*/
 int tlLetras, carryOut;
 
+//Função para indicar se um determinado caractere é uma letra (1) ou não (0)
 int eLetra(char letra);
+//Função que indica se um caractere corresponde a um valor lógico ou não
 int eNumero(char numero);
+//Função que coloca todos os caracteres da expressão digitada em minúsculo 
 void expressaoMinusculo();
+//Função que altera os valores lógicos da expressão
 void somaUmBinario();
+//Função que altera a string da expressão após a realização do cálculo apenas para a negação. Usada também para
+//remover parênteses da expressão
 void remanejaExpressao(int inicio);
+//Altera a string da expressão após o cálculo, mudando dois caracteres por vez
 void remanejaExpressaoNegacao(int inicio);
+//Administra a resolução da expressão
 void resolveExpressao();
+//Faz os cálculos lógicos
 void calcula(int comeco, int fim);
 
 int main()
 {
-	int i, j, pos, pos2;
-	char res;
+	int i, j, pos;
 		
 	printf("Digite a expressao:\n");
 	fflush(stdin);
@@ -67,6 +87,7 @@ int main()
 	{
 		strcpy(expressaoAux, expressao);
 		
+		//Altera os caracteres das variaveis, colocando seus respectivos valores lógicos
 		for(j = 0; j < strlen(expressaoAux); j++)
 		{
 			if(eLetra(expressaoAux[j]) == 1)
@@ -94,11 +115,11 @@ int main()
 		resolveExpressao();
 		
 		puts(expressaoAux);	
-			
+		
+		//Altera os valores lógicos das variáveis na tabela	
 		if(i < pow(2, tlLetras) - 1)
 			somaUmBinario();
 			
-		printf("\n");
 	}
 	
 	getch();
