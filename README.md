@@ -25,3 +25,7 @@ p+!r>q.!r
 ![Exemplo 2](https://i.imgur.com/5gXnmPI.png)
 
 !(p.q)+!(q=p)
+ 
+ # COMO USAR
+ 1 - Compile o arquivo "main.c" em um compilador C qualquer
+ 2 - Digite uma expressão válida
