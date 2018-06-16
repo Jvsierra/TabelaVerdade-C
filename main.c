@@ -76,11 +76,19 @@ int main()
 		
 	for(i = 0; i < tlLetras; i++)
 		valoresLetras[i] = '0';
-		
+	
+	for(j = 0; j <= tlLetras; j++)
+			printf("--");
+			
+	printf("\n|");
+			
 	for(i = 0; i < tlLetras; i++)
 		printf("%c|", letras[i]);
-	printf("s");
-	printf("\n\n");
+	printf("S|\n");
+	
+	for(j = 0; j <= tlLetras; j++)
+			printf("--");
+	printf("-\n");
 	
 	for(i = 0; i < pow(2, tlLetras); i++)
 	{
@@ -106,14 +114,19 @@ int main()
 			
 		}
 		
+		printf("|");
+		
 		for(j = 0; j < tlLetras; j++)
-			printf("%c ", valoresLetras[j]);
-			
-		printf("|");	
+			printf("%c|", valoresLetras[j]);	
 			
 		resolveExpressao();
 		
-		puts(expressaoAux);	
+		printf("%1.1s|\n", expressaoAux);
+			
+		for(j = 0; j <= tlLetras; j++)
+			printf("--");
+			
+		printf("-\n");
 		
 		//Altera os valores lógicos das variáveis na tabela	
 		if(i < pow(2, tlLetras) - 1)
@@ -413,7 +426,8 @@ void resolveExpressao()
 		else
 		{
 			//Expressão não tem mais parênteses
-			calcula(0, strlen(expressaoAux) - 1);
+			calcula(0, strlen(expressaoAux) - 2);
 		}
 	}
+
 }
