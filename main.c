@@ -172,7 +172,7 @@ void calcula(int inicio, int fim)
 			
 			remanejaExpressaoNegacao(pos + 1);
 			
-			inicio = pos;
+			inicio = pos - 1;
 			fim -= 1;
 		}
 	}while(pos <= fim);
@@ -397,9 +397,7 @@ void resolveExpressao()
 		achou = 0;
 		
 		for(i = 0; i < strlen(expressaoAux); i++)
-		{
 			if(expressaoAux[i] == '(')
-			{	
 				for(j = i + 1; j < strlen(expressaoAux); j++)
 					if(expressaoAux[j] == ')')
 					{
@@ -407,9 +405,7 @@ void resolveExpressao()
 						final = j;
 						achou = 1;
 					}
-			}
-		}
-		
+					
 		if(achou == 1)
 		{
 			//Expressão tem parenteses
@@ -426,8 +422,7 @@ void resolveExpressao()
 		else
 		{
 			//Expressão não tem mais parênteses
-			calcula(0, strlen(expressaoAux) - 2);
+			calcula(0, strlen(expressaoAux));
 		}
 	}
-
 }
